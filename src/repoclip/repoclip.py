@@ -11,6 +11,8 @@ from rich.table import Table
 from typer import Argument
 from typer import Option
 
+from repoclip.utils import Clipboard
+
 
 class CountTable(Table):
     """Rich table summarizing character counts per file."""
@@ -116,7 +118,7 @@ class Repoclip:
             )
             dict_count[name] = len(contents)
         output = "\n".join(outputs)
-        pyperclip.copy(output)
+        Clipboard.copy(output)
         console = Console()
         console.print(f"Copied contents ({len(output)} chars).")
         if len(output) > self.MAX_CHARS:
