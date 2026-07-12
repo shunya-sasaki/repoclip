@@ -1,0 +1,77 @@
+[project]
+name = "repoclip"
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic",
+    "pyperclip>=1.11.0",
+    "rich>=15.0.0",
+    "typer>=0.26.8",
+]
+dynamic = ["version"]
+
+[dependency-groups]
+dev = ["pytest", "zensical", "markdown-gfm-admonition"]
+
+[project.scripts]
+repoclip = "repoclip:run"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+exclude-newer = "7 days"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build.hooks.version]
+path = "src/repoclip/_version.py"
+template = '''
+version = "{version}"
+'''
+
+[tool.isort]
+force_single_line = true
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 79
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "C90", "I"]
+fixable = ["I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["repoclip"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+force-single-line = true
+combine-as-imports = true
+from-first = false
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+preview = false
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-v"
+testpaths = ["tests"]
