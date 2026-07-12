@@ -45,12 +45,24 @@ repoclip --verbose
 
 - When the target is a directory, files are collected recursively.
 - Only files with the following suffixes are included:
-  `.c`, `.cc`, `.conf`, `.cpp`, `.h`, `.js`, `.json`, `.jsonc`, `.jsx`, `.md`,
-  `.py`, `.toml`, `.ts`, `.tsx`, `.txt`, `.vue`.
-- Paths matching `.venv/*`, `.git/*`, `*.pyc`, `*/__pycache__`, or `*.lock`
-  are skipped.
+  `.bash`, `.c`, `.cc`, `.conf`, `.cpp`, `.css`, `.f`, `.f77`, `.f90`, `.go`,
+  `.h`, `.hpp`, `.hs`, `.html`, `.ini`, `.js`, `.json`, `.jsonc`, `.jsx`,
+  `.kdl`, `.lhs`, `.lua`, `.md`, `.mmd`, `.ps1`, `.py`, `.rst`, `.sh`, `.tex`,
+  `.toml`, `.ts`, `.tsx`, `.txt`, `.vue`, `.yaml`, `.zsh`.
+- Paths matching `*.lock`, `*.pyc`, `*/__pycache__`, `.git/*`, `.venv/*`, or
+  `node_modules/*` are skipped.
 - Each file is emitted with its path as a header, separated by dividers.
 - If the combined output exceeds 128,000 characters, a warning is printed.
+
+### Clipboard over SSH
+
+When `SSH_CONNECTION` is set in the environment, the local clipboard belongs
+to the remote host rather than the machine in front of you. In that case
+`repoclip` writes the contents using an OSC52
+terminal escape sequence so the text lands on your local clipboard. If `TMUX`
+is set, the sequence is wrapped in a tmux passthrough so it reaches the outer
+terminal. Your terminal emulator must have OSC52 clipboard writes enabled for
+this to work.
 
 ### Example
 
