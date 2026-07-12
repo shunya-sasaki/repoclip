@@ -34,25 +34,52 @@ class Repoclip:
     """Read contents of files in a repo and copy to the system clipboard."""
 
     TARGET_SUFFIXES = [
+        ".bash",
         ".c",
         ".cc",
         ".conf",
         ".cpp",
+        ".css",
+        ".f",
+        ".f77",
+        ".f90",
+        ".go",
         ".h",
+        ".hpp",
+        ".hs",
+        ".html",
+        ".ini",
         ".js",
         ".json",
         ".jsonc",
         ".jsx",
+        ".kdl",
+        ".lhs",
+        ".lua",
         ".md",
+        ".mmd",
+        ".ps1",
         ".py",
+        ".rst",
+        ".sh",
+        ".tex",
         ".toml",
         ".ts",
         ".tsx",
         ".txt",
         ".vue",
+        ".yaml",
+        ".zsh",
     ]
 
-    EXCLUDE_PATTERN = [".venv/*", ".git/*", "*.pyc", "*/__pycache__", "*.lock"]
+    EXCLUDE_PATTERN = [
+        "*.lock",
+        "*.pyc",
+        "*/__pycache__",
+        ".git/*",
+        ".venv/*",
+        "node_modules/*",
+    ]
     MAX_CHARS = 128000
 
     def __init__(self):
