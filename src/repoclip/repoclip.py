@@ -4,7 +4,6 @@ from fnmatch import fnmatch
 from pathlib import Path
 from typing import Annotated
 
-import pyperclip
 import typer
 from rich.console import Console
 from rich.table import Table
